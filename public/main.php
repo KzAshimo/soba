@@ -53,7 +53,7 @@ $local = [ //地酒----------------------------
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注文管理システム</title>
     <link href="../public/styles.css" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900 m-6">
