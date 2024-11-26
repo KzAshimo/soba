@@ -563,6 +563,11 @@ video {
   margin-right: 1rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -593,6 +598,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .max-w-full {
