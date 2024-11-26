@@ -53,6 +53,7 @@ $local = [ //地酒----------------------------
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注文管理システム</title>
     <link href="../public/styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 
 <body class="font-sans bg-gray-50 text-gray-900 m-6">
@@ -66,6 +67,7 @@ $local = [ //地酒----------------------------
             <div class="bg-white shadow rounded-lg p-4">
                 <h2 class="text-xl md:text-2xl font-semibold mb-2">現在の金額</h2>
                 <p id="total" class="text-lg md:text-xl font-bold text-blue-600">￥0</p>
+                <button id="reset" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">削除</button>
             </div>
         </section>
 
@@ -76,79 +78,94 @@ $local = [ //地酒----------------------------
             <div class="space-y-4 md:grid md:grid-cols-2 gap-4">
 
                 <!-- 以下使いまわし -->
-                 <!-- ビール -->
+                <!-- ビール -->
                 <div class="items-start bg-gray-100 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-lg md:text-xl font-bold bg-yellow-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">ビール(KIRIN)</h3>
-                    <?php
+                    <button type="button" data-toggle="beer"
+                        class="text-lg md:text-xl font-bold bg-yellow-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">ビール(KIRIN)</button>
+                    <div class="hidden" id="beer">
+                        <?php
 
-                    foreach ($beer as $product) {
-                        echo "<div class = my-4>";
-                        echo "<div class='flex items-center justify-between w-full'>";
-                        echo "<button data-price='{$product->price}' class='bg-yellow-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
-                        echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
-                        echo "</div></div>";
-                    }
-                    ?>
+                        foreach ($beer as $product) {
+                            echo "<div class = my-4>";
+                            echo "<div class='flex items-center justify-between w-full'>";
+                            echo "<button data-price='{$product->price}' class='bg-yellow-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
+                            echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
+                            echo "</div></div>";
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- 焼酎 -->
                 <div class="items-start bg-gray-100 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-lg md:text-xl font-bold bg-purple-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</h3>
-                    <?php
+                    <button type="button" data-toggle="shochu"
+                        class="text-lg md:text-xl font-bold bg-purple-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</button>
+                    <div class="hidden" id="shochu">
+                        <?php
 
-                    foreach ($shochu as $product) {
-                        echo "<div class = my-4>";
-                        echo "<div class='flex items-center justify-between w-full'>";
-                        echo "<button data-price='{$product->price}' class='bg-purple-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
-                        echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
-                        echo "</div></div>";
-                    }
-                    ?>
+                        foreach ($shochu as $product) {
+                            echo "<div class = my-4>";
+                            echo "<div class='flex items-center justify-between w-full'>";
+                            echo "<button data-price='{$product->price}' class='bg-purple-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
+                            echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
+                            echo "</div></div>";
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- ワイン -->
                 <div class="items-start bg-gray-100 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-lg md:text-xl font-bold bg-pink-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</h3>
-                    <?php
+                    <button type="button" data-toggle="wine"
+                        class="text-lg md:text-xl font-bold bg-pink-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</button>
+                    <div class="hidden" id="wine">
+                        <?php
 
-                    foreach ($wine as $product) {
-                        echo "<div class = my-4>";
-                        echo "<div class='flex items-center justify-between w-full'>";
-                        echo "<button data-price='{$product->price}' class='bg-pink-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
-                        echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
-                        echo "</div></div>";
-                    }
-                    ?>
+                        foreach ($wine as $product) {
+                            echo "<div class = my-4>";
+                            echo "<div class='flex items-center justify-between w-full'>";
+                            echo "<button data-price='{$product->price}' class='bg-pink-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
+                            echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
+                            echo "</div></div>";
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- ソフトドリンク -->
                 <div class="items-start bg-gray-100 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-lg md:text-xl font-bold bg-sky-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">ソフトドリンク</h3>
-                    <?php
+                    <button type="button" data-toggle="softDrink"
+                        class="text-lg md:text-xl font-bold bg-sky-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">ソフトドリンク</button>
+                    <div class="hidden" id="softDrink">
+                        <?php
 
-                    foreach ($softDrink as $product) {
-                        echo "<div class = my-4>";
-                        echo "<div class='flex items-center justify-between w-full'>";
-                        echo "<button data-price='{$product->price}' class='bg-sky-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
-                        echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
-                        echo "</div></div>";
-                    }
-                    ?>
+                        foreach ($softDrink as $product) {
+                            echo "<div class = my-4>";
+                            echo "<div class='flex items-center justify-between w-full'>";
+                            echo "<button data-price='{$product->price}' class='bg-sky-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
+                            echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
+                            echo "</div></div>";
+                        }
+                        ?>
+                    </div>
                 </div>
 
                 <!-- 地酒 -->
                 <div class="items-start bg-gray-100 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-lg md:text-xl font-bold bg-green-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</h3>
-                    <?php
+                    <button type="button" data-toggle="local"
+                        class="text-lg md:text-xl font-bold bg-green-300 px-2 py-1 rounded mb-3 md:mb-0 md:mr-4 w-full text-center">焼酎</button>
+                    <div class="hidden" id="local">
+                        <?php
 
-                    foreach ($local as $product) {
-                        echo "<div class = my-4>";
-                        echo "<div class='flex items-center justify-between w-full'>";
-                        echo "<button data-price='{$product->price}' class='bg-green-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
-                        echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
-                        echo "</div></div>";
-                    }
-                    ?>
+                        foreach ($local as $product) {
+                            echo "<div class = my-4>";
+                            echo "<div class='flex items-center justify-between w-full'>";
+                            echo "<button data-price='{$product->price}' class='bg-green-300 text-black px-3 py-2 rounded font-bold active:translate-y-2 transition-transform '>{$product->name}</button>";
+                            echo "<p class='text-lg font-bold text-gray-700'>￥{$product->price}</p>";
+                            echo "</div></div>";
+                        }
+                        ?>
+                    </div>
                 </div>
 
 
@@ -161,23 +178,6 @@ $local = [ //地酒----------------------------
         &copy; 2024 Organizer hanawa ashimo
     </footer>
 
-    <!-- js処理 -->
-    <script>
-        const Total = document.getElementById("total");
-        let total = 0;
-
-        const buttons = document.querySelectorAll("button[data-price]");
-
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-                const price = parseInt(button.getAttribute("data-price"), 10);
-
-                total += price;
-
-                Total.textContent = `￥${total}`;
-            });
-        });
-    </script>
 </body>
 
 </html>
