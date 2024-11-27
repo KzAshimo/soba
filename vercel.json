@@ -1,16 +1,8 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "public/main.php",
-        "use": "@vercel/php"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "public/main.php"
-      }
-    ]
-  }
-  
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ]
+}
